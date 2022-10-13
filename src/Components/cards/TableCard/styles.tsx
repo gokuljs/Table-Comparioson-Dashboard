@@ -41,7 +41,7 @@ export const Table = styled(muiTable)`
     font-size: 1rem;
     cursor: pointer;
   }
-  .funding-history-table-row:nth-child(2n) {
+  .funding-history-table-row:nth-of-type(2n) {
     .funding-history-table-cell {
       background: #c5dfe1;
     }
