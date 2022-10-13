@@ -10,9 +10,9 @@ export const Table = styled(muiTable)`
   border: 1px solid rgba(224, 224, 224, 1);
   min-width: 5rem;
   .table-cell {
-    padding: 0.725rem 1rem;
+    padding: 0.5em 1rem;
     min-height: 5rem;
-    min-width: 15rem;
+    min-width: 1rem;
   }
   .logo {
     height: 3rem;
@@ -40,6 +40,11 @@ export const Table = styled(muiTable)`
     color: red;
     font-size: 1rem;
     cursor: pointer;
+  }
+  .funding-history-table-row:nth-child(2n) {
+    .funding-history-table-cell {
+      background: #c5dfe1;
+    }
   }
 `;
 

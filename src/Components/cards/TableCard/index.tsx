@@ -127,19 +127,28 @@ function TableCard({
             data?.fundingHistory?.history &&
             showDetailedFundingHistory && (
               <>
-                <TableRow>
-                  <TableCell className="table-cell" align="left">
-                    {data?.fundingHistory?.history?.founded}
+                <TableRow className="funding-history-table-row">
+                  <TableCell
+                    className="table-cell funding-history-table-cell"
+                    align="left"
+                  >
+                    <Text> {data?.fundingHistory?.history?.founded}</Text>
                   </TableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell className="table-cell" align="left">
-                    {data?.fundingHistory?.history?.keyInvestors}
+                <TableRow className="funding-history-table-row">
+                  <TableCell
+                    className="table-cell funding-history-table-cell"
+                    align="left"
+                  >
+                    <Text>{data?.fundingHistory?.history?.keyInvestors}</Text>
                   </TableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell className="table-cell" align="left">
-                    {data?.fundingHistory?.history?.Founders}
+                <TableRow className="funding-history-table-row">
+                  <TableCell
+                    className="table-cell funding-history-table-cell"
+                    align="left"
+                  >
+                    <Text>{data?.fundingHistory?.history?.Founders}</Text>
                   </TableCell>
                 </TableRow>
               </>
