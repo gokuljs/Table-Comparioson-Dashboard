@@ -5,6 +5,8 @@ import CircularProgressBar from "./components/circularProgessBar";
 import { Table } from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import { Text } from "./styles";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
+import { DummyDataDeleteProps } from "./types";
 
 function TableCard({
   data,
@@ -24,6 +26,17 @@ function TableCard({
       dummyDataSet.findIndex((value) => value.id === data.id),
       1
     );
+    setDummyDataSet([...dummyDataSet]);
+  };
+  const deleteData = (deleteAttribute: DummyDataDeleteProps) => {
+    dummyDataSet.forEach((value) => {
+      if (deleteAttribute === DummyDataDeleteProps.PRODUCT_DESCRIPTION) {
+        delete value.productDescription;
+      } else if (deleteAttribute === DummyDataDeleteProps.FUNDING_HISTORY) {
+        delete value.fundingHistory;
+      }
+      //   else if()
+    });
     setDummyDataSet([...dummyDataSet]);
   };
   return (
@@ -69,22 +82,47 @@ function TableCard({
               </Grid>
             </TableCell>
           </TableRow>{" "}
-          <TableRow>
-            <TableCell className="table-cell" align="left">
-              <Text>{data?.productDescription}</Text>
-            </TableCell>
-          </TableRow>{" "}
-          <TableRow>
-            <TableCell
-              className="table-cell"
-              align="left"
-              onClick={() => {
-                setShowDetailedFundingHistory(!showDetailedFundingHistory);
-              }}
-            >
-              <Text>{data?.fundingHistory?.funding}</Text>
-            </TableCell>
-          </TableRow>{" "}
+          {data?.productDescription && (
+            <TableRow>
+              <TableCell className="table-cell" align="left">
+                <Text>
+                  <Grid>{data?.productDescription}</Grid>
+                  <Grid>
+                    {" "}
+                    <CancelRoundedIcon
+                      onClick={() =>
+                        deleteData(DummyDataDeleteProps.PRODUCT_DESCRIPTION)
+                      }
+                      className="close-icon-red"
+                    />
+                  </Grid>
+                </Text>
+              </TableCell>
+            </TableRow>
+          )}
+          {data?.fundingHistory && (
+            <TableRow>
+              <TableCell
+                className="table-cell"
+                align="left"
+                onClick={() => {
+                  setShowDetailedFundingHistory(!showDetailedFundingHistory);
+                }}
+              >
+                <Text>
+                  <Grid>{data?.fundingHistory?.funding}</Grid>
+                  <Grid>
+                    <CancelRoundedIcon
+                      onClick={() =>
+                        deleteData(DummyDataDeleteProps.FUNDING_HISTORY)
+                      }
+                      className="close-icon-red"
+                    />
+                  </Grid>
+                </Text>
+              </TableCell>
+            </TableRow>
+          )}{" "}
           {data?.fundingHistory &&
             data?.fundingHistory?.history &&
             showDetailedFundingHistory && (

@@ -36,10 +36,18 @@ export const Table = styled(muiTable)`
       cursor: pointer;
     }
   }
+  .close-icon-red {
+    color: red;
+    font-size: 1rem;
+    cursor: pointer;
+  }
 `;
 
 export const Text = styled(Grid)`
   font-size: 0.725rem;
   font-style: Inter, sans-serif;
   text-transform: capitalize;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
