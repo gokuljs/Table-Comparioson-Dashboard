@@ -10,10 +10,14 @@ function TableCard({
   data,
   setDummyDataSet,
   dummyDataSet,
+  setShowDetailedFundingHistory,
+  showDetailedFundingHistory,
 }: {
   data: DummyDatasetProps;
   dummyDataSet: DummyDatasetProps[];
+  setShowDetailedFundingHistory: Dispatch<boolean>;
   setDummyDataSet: Dispatch<DummyDatasetProps[]>;
+  showDetailedFundingHistory: boolean;
 }) {
   const deleteCompanyCard = (data: DummyDatasetProps) => {
     dummyDataSet.splice(
@@ -71,15 +75,37 @@ function TableCard({
             </TableCell>
           </TableRow>{" "}
           <TableRow>
-            <TableCell className="table-cell" align="left">
-              "hello
+            <TableCell
+              className="table-cell"
+              align="left"
+              onClick={() => {
+                setShowDetailedFundingHistory(!showDetailedFundingHistory);
+              }}
+            >
+              <Text>{data?.fundingHistory?.funding}</Text>
             </TableCell>
           </TableRow>{" "}
-          <TableRow>
-            <TableCell className="table-cell" align="left">
-              "hello
-            </TableCell>
-          </TableRow>
+          {data?.fundingHistory &&
+            data?.fundingHistory?.history &&
+            showDetailedFundingHistory && (
+              <>
+                <TableRow>
+                  <TableCell className="table-cell" align="left">
+                    {data?.fundingHistory?.history?.founded}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="table-cell" align="left">
+                    {data?.fundingHistory?.history?.keyInvestors}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="table-cell" align="left">
+                    {data?.fundingHistory?.history?.Founders}
+                  </TableCell>
+                </TableRow>
+              </>
+            )}
         </TableBody>
       </Table>
     </div>

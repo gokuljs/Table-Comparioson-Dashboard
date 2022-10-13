@@ -4,7 +4,12 @@ export type DummyDatasetProps = {
   title: string;
   overallScore: number;
   productDescription: string;
-  fundingHistory: fundingHistoryProps[];
+  fundingHistory: Funding;
+};
+
+type Funding = {
+  funding: string;
+  history: fundingHistoryProps;
 };
 
 type fundingHistoryProps = {

@@ -8,13 +8,14 @@ export let dummyDataset: DummyDatasetProps[] = [
     title: "google",
     overallScore: Math.floor(Math.random() * 10 + 1),
     productDescription: "google cloud",
-    fundingHistory: [
-      {
-        founded: Date.now() + Math.random(),
+    fundingHistory: {
+      funding: "raised 3 million from alphabet",
+      history: {
+        founded: 1956,
         keyInvestors: "IndexVentures",
-        Founders: "hello by me",
+        Founders: "cred",
       },
-    ],
+    },
   },
   {
     id: 2,
@@ -23,13 +24,14 @@ export let dummyDataset: DummyDatasetProps[] = [
     title: "dropbox",
     overallScore: Math.floor(Math.random() * 10 + 1),
     productDescription: "dropbox cloud",
-    fundingHistory: [
-      {
-        founded: Date.now() + Math.random(),
+    fundingHistory: {
+      funding: "raised 4 million samsung",
+      history: {
+        founded: 2000,
         keyInvestors: "IndexVentures",
-        Founders: "hello by me",
+        Founders: "gokul",
       },
-    ],
+    },
   },
   {
     id: 3,
@@ -38,13 +40,14 @@ export let dummyDataset: DummyDatasetProps[] = [
     title: "netflix",
     overallScore: Math.floor(Math.random() * 10 + 1),
     productDescription: "salesefoce Cloud",
-    fundingHistory: [
-      {
-        founded: Date.now() + Math.random(),
+    fundingHistory: {
+      funding: "raised 10 million from jp Morgan",
+      history: {
+        founded: 2007,
         keyInvestors: "IndexVentures",
-        Founders: "hello by me",
+        Founders: "jp",
       },
-    ],
+    },
   },
   {
     id: 4,
@@ -53,12 +56,13 @@ export let dummyDataset: DummyDatasetProps[] = [
     title: "microsoft",
     overallScore: Math.floor(Math.random() * 10 + 1),
     productDescription: "sync cloud",
-    fundingHistory: [
-      {
-        founded: Date.now() + Math.random(),
-        keyInvestors: "IndexVentures",
-        Founders: "hello by me",
+    fundingHistory: {
+      funding: "raised 1 million from akkidos",
+      history: {
+        founded: 1999,
+        keyInvestors: "Index Ventures",
+        Founders: "loophole",
       },
-    ],
+    },
   },
 ];

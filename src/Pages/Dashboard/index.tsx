@@ -8,6 +8,9 @@ import { dummyDataset as dummyData } from "./utils";
 function Dashboard() {
   const [dummyDataSet, setDummyDataSet] =
     useState<DummyDatasetProps[]>(dummyData);
+  const [showDetailedFundingHistory, setShowDetailedFundingHistory] =
+    useState<boolean>(false);
+
   return (
     <DashboardWrapper>
       <div className="add-criteria">Add criteria</div>
@@ -18,6 +21,8 @@ function Dashboard() {
               data={value}
               dummyDataSet={dummyDataSet}
               setDummyDataSet={setDummyDataSet}
+              setShowDetailedFundingHistory={setShowDetailedFundingHistory}
+              showDetailedFundingHistory={showDetailedFundingHistory}
             />
           ))}
       </Grid>
