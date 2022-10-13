@@ -8,10 +8,17 @@ export const TableCard = styled(Grid)`
 
 export const Table = styled(muiTable)`
   border: 1px solid rgba(224, 224, 224, 1);
-  min-width: 5rem;
+  .table-cell-header {
+    height: 6.5rem;
+    padding: 0;
+  }
+  .table-cell-progress-bar {
+    height: 4rem;
+    margin: 0;
+  }
   .table-cell {
     padding: 0.5em 1rem;
-    min-height: 5rem;
+    height: 2.5rem;
     min-width: 1rem;
   }
   .logo {
@@ -25,9 +32,10 @@ export const Table = styled(muiTable)`
     margin-top: 0.5rem;
     text-transform: capitalize;
   }
+
   .progress-bar {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .closeIcon {
     color: #999d9f;

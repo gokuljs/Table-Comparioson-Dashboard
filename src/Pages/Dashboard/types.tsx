@@ -1,8 +1,8 @@
 export type DummyDatasetProps = {
-  id?: number;
-  image?: string;
-  title?: string;
-  overallScore: number;
+  id: number;
+  image: string;
+  title: string;
+  overallScore?: number;
   productDescription?: string;
   fundingHistory?: Funding;
 };
@@ -13,7 +13,7 @@ type Funding = {
 };
 
 type fundingHistoryProps = {
-  founded?: number;
+  founded?: string;
   keyInvestors?: string;
   Founders?: string;
 };

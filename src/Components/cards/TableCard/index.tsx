@@ -7,6 +7,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Text } from "./styles";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { DummyDataDeleteProps } from "./types";
+import ArrowDropUpTwoToneIcon from "@mui/icons-material/ArrowDropUpTwoTone";
+import ArrowDropDownTwoToneIcon from "@mui/icons-material/ArrowDropDownTwoTone";
 
 function TableCard({
   data,
@@ -43,18 +45,20 @@ function TableCard({
     <Table aria-label="simple table">
       <TableBody>
         <TableRow>
-          <TableCell className="table-cell" align="center">
-            <Grid item lg={12}>
+          <TableCell className="table-cell-header" align="center">
+            <Grid lg={12}>
               <Grid
                 item
                 display="flex"
                 justifyContent="flex-end"
                 align-item="center"
               >
-                <CloseIcon
-                  className="closeIcon"
-                  onClick={() => deleteCompanyCard(data)}
-                />
+                {data.id !== 0 && (
+                  <CloseIcon
+                    className="closeIcon"
+                    onClick={() => deleteCompanyCard(data)}
+                  />
+                )}
               </Grid>
               <Grid
                 item
@@ -69,15 +73,22 @@ function TableCard({
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell className="table-cell progress-bar" align="center">
+          <TableCell
+            className="table-cell-progress-bar progress-bar"
+            align="left"
+          >
             <Grid
               item
               display="flex"
               flexDirection="column"
-              alignItems="center"
+              alignItems="flex-start"
               justifyContent="center"
             >
-              <CircularProgressBar value={data?.overallScore} />
+              {data?.overallScore ? (
+                <CircularProgressBar value={data?.overallScore} />
+              ) : (
+                <>Overall Score</>
+              )}
             </Grid>
           </TableCell>
         </TableRow>{" "}
@@ -88,12 +99,14 @@ function TableCard({
                 <Grid>{data?.productDescription}</Grid>
                 <Grid>
                   {" "}
-                  <CancelRoundedIcon
-                    onClick={() =>
-                      deleteData(DummyDataDeleteProps.PRODUCT_DESCRIPTION)
-                    }
-                    className="close-icon-red"
-                  />
+                  {data.id === 0 && (
+                    <CancelRoundedIcon
+                      onClick={() =>
+                        deleteData(DummyDataDeleteProps.PRODUCT_DESCRIPTION)
+                      }
+                      className="close-icon-red"
+                    />
+                  )}
                 </Grid>
               </Text>
             </TableCell>
@@ -109,14 +122,27 @@ function TableCard({
               }}
             >
               <Text>
-                <Grid>{data?.fundingHistory?.funding}</Grid>
+                <Grid display="flex" alignItems="center">
+                  {data?.fundingHistory?.funding}
+                  {data.id === 0 && (
+                    <>
+                      {showDetailedFundingHistory ? (
+                        <ArrowDropUpTwoToneIcon />
+                      ) : (
+                        <ArrowDropDownTwoToneIcon />
+                      )}
+                    </>
+                  )}
+                </Grid>
                 <Grid>
-                  <CancelRoundedIcon
-                    onClick={() =>
-                      deleteData(DummyDataDeleteProps.FUNDING_HISTORY)
-                    }
-                    className="close-icon-red"
-                  />
+                  {data.id === 0 && (
+                    <CancelRoundedIcon
+                      onClick={() =>
+                        deleteData(DummyDataDeleteProps.FUNDING_HISTORY)
+                      }
+                      className="close-icon-red"
+                    />
+                  )}
                 </Grid>
               </Text>
             </TableCell>

@@ -28,17 +28,19 @@ const progressBarWarning = (value: number) => {
       };
   }
 };
-function CircularProgressBar({ value }: { value: number }) {
+function CircularProgressBar({ value }: { value?: number }) {
   return (
     <ProgressBarContainer>
-      <CircularProgressbar
-        value={value}
-        text={`${value}`}
-        minValue={1}
-        maxValue={10}
-        background={true}
-        styles={buildStyles(progressBarWarning(value))}
-      />
+      {value && (
+        <CircularProgressbar
+          value={value}
+          text={`${value}`}
+          minValue={1}
+          maxValue={10}
+          background={true}
+          styles={buildStyles(progressBarWarning(value))}
+        />
+      )}
     </ProgressBarContainer>
   );
 }
