@@ -10,7 +10,7 @@ export const Table = styled(muiTable)`
   border: 1px solid rgba(224, 224, 224, 1);
   .table-cell-header {
     height: 6.5rem;
-    padding: 0;
+    padding: 0.25rem 0.5rem;
   }
   .table-cell-progress-bar {
     height: 4rem;

@@ -66,8 +66,22 @@ function TableCard({
                 flexDirection="column"
                 alignItems="center"
               >
-                <img alt="company-logo" className="logo" src={data?.image} />
-                <Grid className="title">{data?.title}</Grid>
+                {data?.id === 0 && dummyDataSet.length >= 5 ? (
+                  <Text>
+                    Note:To add more Vendors to compare you need to remove to
+                    first remove one or more vendors.At a time maximum of fou
+                    vendors are allowed to compare.
+                  </Text>
+                ) : (
+                  <>
+                    <img
+                      alt="company-logo"
+                      className="logo"
+                      src={data?.image}
+                    />
+                    <Grid className="title">{data?.title}</Grid>
+                  </>
+                )}
               </Grid>
             </Grid>
           </TableCell>
