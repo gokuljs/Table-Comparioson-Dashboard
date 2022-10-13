@@ -4,6 +4,7 @@ import { DummyDatasetProps } from "../../../Pages/Dashboard/types";
 import CircularProgressBar from "./components/circularProgessBar";
 import { Table } from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
+import { Text } from "./styles";
 
 function TableCard({
   data,
@@ -46,7 +47,7 @@ function TableCard({
                   alignItems="center"
                 >
                   <img alt="company-logo" className="logo" src={data?.image} />
-                  <Grid className="title">{data.title}</Grid>
+                  <Grid className="title">{data?.title}</Grid>
                 </Grid>
               </Grid>
             </TableCell>
@@ -60,13 +61,13 @@ function TableCard({
                 alignItems="center"
                 justifyContent="center"
               >
-                <CircularProgressBar value={data.overallScore} />
+                <CircularProgressBar value={data?.overallScore} />
               </Grid>
             </TableCell>
           </TableRow>{" "}
           <TableRow>
             <TableCell className="table-cell" align="left">
-              "hello
+              <Text>{data?.productDescription}</Text>
             </TableCell>
           </TableRow>{" "}
           <TableRow>

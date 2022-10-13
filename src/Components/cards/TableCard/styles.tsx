@@ -37,3 +37,9 @@ export const Table = styled(muiTable)`
     }
   }
 `;
+
+export const Text = styled(Grid)`
+  font-size: 0.725rem;
+  font-style: Inter, sans-serif;
+  text-transform: capitalize;
+`;
