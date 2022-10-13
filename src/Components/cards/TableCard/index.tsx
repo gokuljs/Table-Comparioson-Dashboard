@@ -40,122 +40,120 @@ function TableCard({
     setDummyDataSet([...dummyDataSet]);
   };
   return (
-    <div>
-      <Table aria-label="simple table">
-        <TableBody>
-          <TableRow>
-            <TableCell className="table-cell" align="center">
-              <Grid item lg={12}>
-                <Grid
-                  item
-                  display="flex"
-                  justifyContent="flex-end"
-                  align-item="center"
-                >
-                  <CloseIcon
-                    className="closeIcon"
-                    onClick={() => deleteCompanyCard(data)}
-                  />
-                </Grid>
-                <Grid
-                  item
-                  display="flex"
-                  flexDirection="column"
-                  alignItems="center"
-                >
-                  <img alt="company-logo" className="logo" src={data?.image} />
-                  <Grid className="title">{data?.title}</Grid>
-                </Grid>
+    <Table aria-label="simple table">
+      <TableBody>
+        <TableRow>
+          <TableCell className="table-cell" align="center">
+            <Grid item lg={12}>
+              <Grid
+                item
+                display="flex"
+                justifyContent="flex-end"
+                align-item="center"
+              >
+                <CloseIcon
+                  className="closeIcon"
+                  onClick={() => deleteCompanyCard(data)}
+                />
               </Grid>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="table-cell progress-bar" align="center">
               <Grid
                 item
                 display="flex"
                 flexDirection="column"
                 alignItems="center"
-                justifyContent="center"
               >
-                <CircularProgressBar value={data?.overallScore} />
+                <img alt="company-logo" className="logo" src={data?.image} />
+                <Grid className="title">{data?.title}</Grid>
               </Grid>
+            </Grid>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell className="table-cell progress-bar" align="center">
+            <Grid
+              item
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <CircularProgressBar value={data?.overallScore} />
+            </Grid>
+          </TableCell>
+        </TableRow>{" "}
+        {data?.productDescription && (
+          <TableRow>
+            <TableCell className="table-cell" align="left">
+              <Text>
+                <Grid>{data?.productDescription}</Grid>
+                <Grid>
+                  {" "}
+                  <CancelRoundedIcon
+                    onClick={() =>
+                      deleteData(DummyDataDeleteProps.PRODUCT_DESCRIPTION)
+                    }
+                    className="close-icon-red"
+                  />
+                </Grid>
+              </Text>
             </TableCell>
-          </TableRow>{" "}
-          {data?.productDescription && (
-            <TableRow>
-              <TableCell className="table-cell" align="left">
-                <Text>
-                  <Grid>{data?.productDescription}</Grid>
-                  <Grid>
-                    {" "}
-                    <CancelRoundedIcon
-                      onClick={() =>
-                        deleteData(DummyDataDeleteProps.PRODUCT_DESCRIPTION)
-                      }
-                      className="close-icon-red"
-                    />
-                  </Grid>
-                </Text>
-              </TableCell>
-            </TableRow>
+          </TableRow>
+        )}
+        {data?.fundingHistory && (
+          <TableRow>
+            <TableCell
+              className="table-cell"
+              align="left"
+              onClick={() => {
+                setShowDetailedFundingHistory(!showDetailedFundingHistory);
+              }}
+            >
+              <Text>
+                <Grid>{data?.fundingHistory?.funding}</Grid>
+                <Grid>
+                  <CancelRoundedIcon
+                    onClick={() =>
+                      deleteData(DummyDataDeleteProps.FUNDING_HISTORY)
+                    }
+                    className="close-icon-red"
+                  />
+                </Grid>
+              </Text>
+            </TableCell>
+          </TableRow>
+        )}{" "}
+        {data?.fundingHistory &&
+          data?.fundingHistory?.history &&
+          showDetailedFundingHistory && (
+            <>
+              <TableRow className="funding-history-table-row">
+                <TableCell
+                  className="table-cell funding-history-table-cell"
+                  align="left"
+                >
+                  <Text> {data?.fundingHistory?.history?.founded}</Text>
+                </TableCell>
+              </TableRow>
+              <TableRow className="funding-history-table-row">
+                <TableCell
+                  className="table-cell funding-history-table-cell"
+                  align="left"
+                >
+                  <Text>{data?.fundingHistory?.history?.keyInvestors}</Text>
+                </TableCell>
+              </TableRow>
+              <TableRow className="funding-history-table-row">
+                <TableCell
+                  className="table-cell funding-history-table-cell"
+                  align="left"
+                >
+                  <Text>{data?.fundingHistory?.history?.Founders}</Text>
+                </TableCell>
+              </TableRow>
+            </>
           )}
-          {data?.fundingHistory && (
-            <TableRow>
-              <TableCell
-                className="table-cell"
-                align="left"
-                onClick={() => {
-                  setShowDetailedFundingHistory(!showDetailedFundingHistory);
-                }}
-              >
-                <Text>
-                  <Grid>{data?.fundingHistory?.funding}</Grid>
-                  <Grid>
-                    <CancelRoundedIcon
-                      onClick={() =>
-                        deleteData(DummyDataDeleteProps.FUNDING_HISTORY)
-                      }
-                      className="close-icon-red"
-                    />
-                  </Grid>
-                </Text>
-              </TableCell>
-            </TableRow>
-          )}{" "}
-          {data?.fundingHistory &&
-            data?.fundingHistory?.history &&
-            showDetailedFundingHistory && (
-              <>
-                <TableRow className="funding-history-table-row">
-                  <TableCell
-                    className="table-cell funding-history-table-cell"
-                    align="left"
-                  >
-                    <Text> {data?.fundingHistory?.history?.founded}</Text>
-                  </TableCell>
-                </TableRow>
-                <TableRow className="funding-history-table-row">
-                  <TableCell
-                    className="table-cell funding-history-table-cell"
-                    align="left"
-                  >
-                    <Text>{data?.fundingHistory?.history?.keyInvestors}</Text>
-                  </TableCell>
-                </TableRow>
-                <TableRow className="funding-history-table-row">
-                  <TableCell
-                    className="table-cell funding-history-table-cell"
-                    align="left"
-                  >
-                    <Text>{data?.fundingHistory?.history?.Founders}</Text>
-                  </TableCell>
-                </TableRow>
-              </>
-            )}
-        </TableBody>
-      </Table>
-    </div>
+      </TableBody>
+    </Table>
   );
 }
 
