@@ -27,11 +27,6 @@ export const Table = styled(muiTable)`
     margin: 0;
     padding: 0;
   }
-  .title {
-    font-size: 0.725rem;
-    margin-top: 0.5rem;
-    text-transform: capitalize;
-  }
 
   .progress-bar {
     display: flex;
@@ -49,12 +44,23 @@ export const Table = styled(muiTable)`
     font-size: 1rem;
     cursor: pointer;
   }
-  .funding-history-table-row:nth-of-type(2n) {
+  .funding-history-table-row:nth-child(odd) {
     .funding-history-table-cell {
       background: #c5dfe1;
     }
   }
 `;
+
+export const Title = styled(Grid)(
+  ({ isVendor = false }: { isVendor: boolean }) => ({
+    fontSize: "0.725rem",
+    marginTop: "0.5rem",
+    textTransform: "capitalize",
+    cursor: isVendor ? "pointer" : "default",
+    color: isVendor ? "blue" : "black",
+    fontFamily: "Inter,sans-serif",
+  })
+);
 
 export const Text = styled(Grid)`
   font-size: 0.725rem;

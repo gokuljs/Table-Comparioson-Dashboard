@@ -1,8 +1,8 @@
 import { Grid, TableBody, TableCell, TableRow } from "@mui/material";
-import React, { Dispatch } from "react";
+import React from "react";
 import { DummyDatasetProps } from "../../../Pages/Dashboard/types";
 import CircularProgressBar from "./components/circularProgessBar";
-import { Table } from "./styles";
+import { Table, Title } from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import { Text } from "./styles";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
@@ -42,7 +42,7 @@ function TableCard({
       <TableBody>
         <TableRow>
           <TableCell className="table-cell-header" align="center">
-            <Grid lg={12}>
+            <Grid item lg={12}>
               <Grid
                 item
                 display="flex"
@@ -75,7 +75,7 @@ function TableCard({
                       className="logo"
                       src={data?.image}
                     />
-                    <Grid className="title">{data?.title}</Grid>
+                    <Title isVendor={data?.id === 0}>{data?.title}</Title>
                   </>
                 )}
               </Grid>
@@ -101,7 +101,7 @@ function TableCard({
               )}
             </Grid>
           </TableCell>
-        </TableRow>{" "}
+        </TableRow>
         {data?.productDescription && (
           <TableRow>
             <TableCell className="table-cell" align="left">
@@ -157,7 +157,7 @@ function TableCard({
               </Text>
             </TableCell>
           </TableRow>
-        )}{" "}
+        )}
         {data?.fundingHistory &&
           data?.fundingHistory?.history &&
           showDetailedFundingHistory && (
