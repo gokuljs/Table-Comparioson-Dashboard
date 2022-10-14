@@ -33,6 +33,7 @@ function TableCard({
       },
     },
   });
+
   const deleteCompanyCard = (data: DummyDatasetProps) => {
     dummyDataSet.splice(
       dummyDataSet.findIndex((value) => value.id === data.id),
