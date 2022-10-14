@@ -10,8 +10,7 @@ function Dashboard() {
     useState<DummyDatasetProps[]>(dummyData);
   const [showDetailedFundingHistory, setShowDetailedFundingHistory] =
     useState<boolean>(false);
-  const keys = dummyDataSet.length > 0 ? Object.keys(dummyDataSet[0]) : [];
-  console.log(keys, "ssss");
+
   return (
     <DashboardWrapper>
       <div className="add-criteria">Add criteria</div>

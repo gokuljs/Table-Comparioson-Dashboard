@@ -6,7 +6,7 @@ import { Table } from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import { Text } from "./styles";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
-import { DummyDataDeleteProps } from "./types";
+import { DummyDataDeleteProps, TableCardProps } from "./types";
 import ArrowDropUpTwoToneIcon from "@mui/icons-material/ArrowDropUpTwoTone";
 import ArrowDropDownTwoToneIcon from "@mui/icons-material/ArrowDropDownTwoTone";
 
@@ -16,13 +16,7 @@ function TableCard({
   dummyDataSet,
   setShowDetailedFundingHistory,
   showDetailedFundingHistory,
-}: {
-  data: DummyDatasetProps;
-  dummyDataSet: DummyDatasetProps[];
-  setShowDetailedFundingHistory: Dispatch<boolean>;
-  setDummyDataSet: Dispatch<DummyDatasetProps[]>;
-  showDetailedFundingHistory: boolean;
-}) {
+}: TableCardProps) {
   const deleteCompanyCard = (data: DummyDatasetProps) => {
     dummyDataSet.splice(
       dummyDataSet.findIndex((value) => value.id === data.id),
@@ -30,6 +24,7 @@ function TableCard({
     );
     setDummyDataSet([...dummyDataSet]);
   };
+
   const deleteData = (deleteAttribute: DummyDataDeleteProps) => {
     dummyDataSet.forEach((value) => {
       if (deleteAttribute === DummyDataDeleteProps.PRODUCT_DESCRIPTION) {
@@ -41,6 +36,7 @@ function TableCard({
     });
     setDummyDataSet([...dummyDataSet]);
   };
+
   return (
     <Table aria-label="simple table">
       <TableBody>
