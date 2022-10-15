@@ -71,6 +71,7 @@ export const Table = styled(muiTable)`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 `;
 
