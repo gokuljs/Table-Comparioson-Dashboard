@@ -43,21 +43,28 @@ function TableCard({
   });
 
   useEffect(() => {
-    if (chooseCriteria === CriteriaType.COMPANY_INFO) {
-      const tempArray = [...dummyDataSet];
-      tempArray[0] = { ...tempArray[0], [chooseCriteria]: "Company Info" };
-      setDummyDataSet([...tempArray]);
-    } else if (chooseCriteria === CriteriaType.FEATURES) {
-      const tempArray = [...dummyDataSet];
-      tempArray[0] = { ...tempArray[0], [chooseCriteria]: "Features" };
-      setDummyDataSet([...tempArray]);
-    } else if (chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES) {
-      const tempArray = [...dummyDataSet];
-      tempArray[0] = {
-        ...tempArray[0],
-        [chooseCriteria]: "Customer Case Studies",
-      };
+    const tempArray = [...dummyDataSet];
+
+    switch (true) {
+      case chooseCriteria === CriteriaType.COMPANY_INFO:
+        tempArray[0] = { ...tempArray[0], [chooseCriteria]: "Company Info" };
+        setDummyDataSet([...tempArray]);
+        break;
+      case chooseCriteria === CriteriaType.FEATURES:
+        tempArray[0] = { ...tempArray[0], [chooseCriteria]: "Features" };
+        setDummyDataSet([...tempArray]);
+        break;
+      case chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES:
+        tempArray[0] = {
+          ...tempArray[0],
+          [chooseCriteria]: "Customer Case Studies",
+        };
+        setDummyDataSet([...tempArray]);
+        break;
+      default:
+        return;
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chooseCriteria]);
 
@@ -127,11 +134,7 @@ function TableCard({
         ...selectedData,
         [chooseCriteria]: value[chooseCriteria],
       };
-      console.log({ tempArray }, "ssss");
-      // setDummyDataSet([...tempArray]);
       setDummyDataSet([...tempArray]);
-      console.log({ dummyDataSet }, "ssss");
-      // setDummyDataSet([...tempArray]);
     }
   };
 
@@ -350,9 +353,7 @@ function TableCard({
                   {" "}
                   {data.id === 0 && (
                     <CancelRoundedIcon
-                      onClick={() =>
-                        deleteData(DummyDataDeleteProps.PRODUCT_DESCRIPTION)
-                      }
+                      onClick={() => deleteData(DummyDataDeleteProps.FEATURES)}
                       className="close-icon-red"
                     />
                   )}
@@ -371,7 +372,7 @@ function TableCard({
                   {data.id === 0 && (
                     <CancelRoundedIcon
                       onClick={() =>
-                        deleteData(DummyDataDeleteProps.PRODUCT_DESCRIPTION)
+                        deleteData(DummyDataDeleteProps.CUSTOMER_CASE_STUDIES)
                       }
                       className="close-icon-red"
                     />
