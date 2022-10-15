@@ -44,7 +44,6 @@ function TableCard({
 
   useEffect(() => {
     const tempArray = [...dummyDataSet];
-
     switch (true) {
       case chooseCriteria === CriteriaType.COMPANY_INFO:
         tempArray[0] = { ...tempArray[0], [chooseCriteria]: "Company Info" };
@@ -62,9 +61,8 @@ function TableCard({
         setDummyDataSet([...tempArray]);
         break;
       default:
-        return;
+        break;
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chooseCriteria]);
 
