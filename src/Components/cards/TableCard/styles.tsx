@@ -49,6 +49,29 @@ export const Table = styled(muiTable)`
       background: #c5dfe1;
     }
   }
+  .inputTextField {
+    width: 90%;
+    padding: 0.5rem 0.725rem;
+    border: 1px solid #e4e6e7;
+  }
+  .circle-tick-icon {
+    color: green;
+  }
+  .table-cell-input {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .submit-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const Title = styled(Grid)(

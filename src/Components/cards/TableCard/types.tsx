@@ -1,9 +1,15 @@
 import { Dispatch } from "react";
-import { DummyDatasetProps } from "../../../Pages/Dashboard/types";
+import {
+  CriteriaType,
+  DummyDatasetProps,
+} from "../../../Pages/Dashboard/types";
 
 export enum DummyDataDeleteProps {
   PRODUCT_DESCRIPTION,
   FUNDING_HISTORY,
+  COMPANY_INFO,
+  FEATURES,
+  CUSTOMER_CASE_STUDIES,
 }
 
 export type TableCardProps = {
@@ -12,4 +18,6 @@ export type TableCardProps = {
   setShowDetailedFundingHistory: Dispatch<boolean>;
   setDummyDataSet: Dispatch<DummyDatasetProps[]>;
   showDetailedFundingHistory: boolean;
+  chooseCriteria: string;
+  setChooseCriteria: Dispatch<CriteriaType>;
 };

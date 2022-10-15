@@ -1,6 +1,9 @@
 import { Grid, TableBody, TableCell, TableRow } from "@mui/material";
-import React, { useState } from "react";
-import { DummyDatasetProps } from "../../../Pages/Dashboard/types";
+import React, { useEffect, useState } from "react";
+import {
+  CriteriaType,
+  DummyDatasetProps,
+} from "../../../Pages/Dashboard/types";
 import CircularProgressBar from "./components/circularProgessBar";
 import { Table, Title } from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
@@ -9,6 +12,8 @@ import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { DummyDataDeleteProps, TableCardProps } from "./types";
 import ArrowDropUpTwoToneIcon from "@mui/icons-material/ArrowDropUpTwoTone";
 import ArrowDropDownTwoToneIcon from "@mui/icons-material/ArrowDropDownTwoTone";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import { useForm } from "react-hook-form";
 
 function TableCard({
   data,
@@ -16,7 +21,10 @@ function TableCard({
   dummyDataSet,
   setShowDetailedFundingHistory,
   showDetailedFundingHistory,
+  chooseCriteria,
+  setChooseCriteria,
 }: TableCardProps) {
+  const { register, handleSubmit } = useForm();
   const [addingDummyData, setAddingDummyData] = useState<DummyDatasetProps>({
     id: 1,
     image:
@@ -34,6 +42,25 @@ function TableCard({
     },
   });
 
+  useEffect(() => {
+    if (chooseCriteria === CriteriaType.COMPANY_INFO) {
+      const tempArray = [...dummyDataSet];
+      tempArray[0] = { ...tempArray[0], [chooseCriteria]: "Company Info" };
+      setDummyDataSet([...tempArray]);
+    } else if (chooseCriteria === CriteriaType.FEATURES) {
+      const tempArray = [...dummyDataSet];
+      tempArray[0] = { ...tempArray[0], [chooseCriteria]: "Features" };
+      setDummyDataSet([...tempArray]);
+    } else if (chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES) {
+      const tempArray = [...dummyDataSet];
+      tempArray[0] = {
+        ...tempArray[0],
+        [chooseCriteria]: "Customer Case Studies",
+      };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chooseCriteria]);
+
   const deleteCompanyCard = (data: DummyDatasetProps) => {
     dummyDataSet.splice(
       dummyDataSet.findIndex((value) => value.id === data.id),
@@ -43,17 +70,42 @@ function TableCard({
   };
 
   const deleteData = (deleteAttribute: DummyDataDeleteProps) => {
-    dummyDataSet.forEach((value) => {
-      if (deleteAttribute === DummyDataDeleteProps.PRODUCT_DESCRIPTION) {
-        delete value.productDescription;
+    const tempArray = [...dummyDataSet];
+    tempArray.forEach((value) => {
+      if (
+        deleteAttribute === DummyDataDeleteProps.PRODUCT_DESCRIPTION &&
+        value?.productDescription
+      ) {
+        delete value?.productDescription;
         delete addingDummyData?.productDescription;
-      } else if (deleteAttribute === DummyDataDeleteProps.FUNDING_HISTORY) {
-        delete value.fundingHistory;
+      } else if (
+        deleteAttribute === DummyDataDeleteProps.FUNDING_HISTORY &&
+        value?.fundingHistory
+      ) {
+        delete value?.fundingHistory;
         delete addingDummyData?.fundingHistory;
+      } else if (
+        deleteAttribute === DummyDataDeleteProps?.COMPANY_INFO &&
+        value?.companyInfo
+      ) {
+        delete value?.companyInfo;
+        setChooseCriteria(CriteriaType.DEFAULT);
+      } else if (
+        deleteAttribute === DummyDataDeleteProps?.FEATURES &&
+        value?.features
+      ) {
+        delete value?.features;
+        setChooseCriteria(CriteriaType.DEFAULT);
+      } else if (
+        deleteAttribute === DummyDataDeleteProps?.CUSTOMER_CASE_STUDIES &&
+        value?.customerCaseStudies
+      ) {
+        delete value?.customerCaseStudies;
+        setChooseCriteria(CriteriaType.DEFAULT);
       }
     });
     setAddingDummyData({ ...addingDummyData });
-    setDummyDataSet([...dummyDataSet]);
+    setDummyDataSet([...tempArray]);
   };
 
   const addVendor = (id?: Number) => {
@@ -62,6 +114,52 @@ function TableCard({
       setDummyDataSet([...dummyDataSet]);
     } else {
       return;
+    }
+  };
+
+  const onSubmit = (value: any, selectedData: any) => {
+    const index = dummyDataSet.findIndex(
+      (data) => data.id === selectedData?.id
+    );
+    if (index !== -1 && chooseCriteria) {
+      const tempArray = [...dummyDataSet];
+      tempArray[index] = {
+        ...selectedData,
+        [chooseCriteria]: value[chooseCriteria],
+      };
+      console.log({ tempArray }, "ssss");
+      // setDummyDataSet([...tempArray]);
+      setDummyDataSet([...tempArray]);
+      console.log({ dummyDataSet }, "ssss");
+      // setDummyDataSet([...tempArray]);
+    }
+  };
+
+  const validatingInputFieldExistOrNot = () => {
+    switch (true) {
+      case chooseCriteria === CriteriaType.COMPANY_INFO && !data?.companyInfo:
+        return true;
+      case chooseCriteria === CriteriaType.FEATURES && !data?.features:
+        return true;
+      case chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES &&
+        !data?.customerCaseStudies:
+        return true;
+      default:
+        return false;
+    }
+  };
+
+  const placeHolderText = () => {
+    switch (true) {
+      case chooseCriteria === CriteriaType.COMPANY_INFO && !data?.companyInfo:
+        return "Company Info";
+      case chooseCriteria === CriteriaType.FEATURES && !data?.features:
+        return "Features";
+      case chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES &&
+        !data?.customerCaseStudies:
+        return "Customer Case Studies";
+      default:
+        return "";
     }
   };
 
@@ -223,6 +321,89 @@ function TableCard({
               </TableRow>
             </>
           )}
+        {data?.companyInfo && (
+          <TableRow>
+            <TableCell className="table-cell" align="left">
+              <Text>
+                <Grid>{data?.companyInfo}</Grid>
+                <Grid>
+                  {" "}
+                  {data.id === 0 && (
+                    <CancelRoundedIcon
+                      onClick={() =>
+                        deleteData(DummyDataDeleteProps.COMPANY_INFO)
+                      }
+                      className="close-icon-red"
+                    />
+                  )}
+                </Grid>
+              </Text>
+            </TableCell>
+          </TableRow>
+        )}
+        {data?.features && (
+          <TableRow>
+            <TableCell className="table-cell" align="left">
+              <Text>
+                <Grid>{data?.features}</Grid>
+                <Grid>
+                  {" "}
+                  {data.id === 0 && (
+                    <CancelRoundedIcon
+                      onClick={() =>
+                        deleteData(DummyDataDeleteProps.PRODUCT_DESCRIPTION)
+                      }
+                      className="close-icon-red"
+                    />
+                  )}
+                </Grid>
+              </Text>
+            </TableCell>
+          </TableRow>
+        )}
+        {data?.customerCaseStudies && (
+          <TableRow>
+            <TableCell className="table-cell" align="left">
+              <Text>
+                <Grid>{data?.customerCaseStudies}</Grid>
+                <Grid>
+                  {" "}
+                  {data.id === 0 && (
+                    <CancelRoundedIcon
+                      onClick={() =>
+                        deleteData(DummyDataDeleteProps.PRODUCT_DESCRIPTION)
+                      }
+                      className="close-icon-red"
+                    />
+                  )}
+                </Grid>
+              </Text>
+            </TableCell>
+          </TableRow>
+        )}
+        {validatingInputFieldExistOrNot() && data?.id !== 0 && (
+          <TableRow className="funding-history-table-row">
+            <TableCell className="table-cell table-cell-input" align="left">
+              <form
+                className="table-cell-input"
+                onSubmit={handleSubmit((value) => onSubmit(value, data))}
+              >
+                <input
+                  type="text"
+                  placeholder={`Please enter ${placeHolderText()}`}
+                  {...register(chooseCriteria, { required: true })}
+                  className="inputTextField"
+                />
+                <button type="submit" className="submit-button">
+                  <CheckCircleRoundedIcon
+                    type="submit"
+                    className="circle-tick-icon"
+                  />
+                </button>
+              </form>
+            </TableCell>
+          </TableRow>
+        )}
       </TableBody>
     </Table>
   );

@@ -5,6 +5,9 @@ export type DummyDatasetProps = {
   overallScore?: number;
   productDescription?: string;
   fundingHistory?: Funding;
+  companyInfo?: string;
+  features?: string;
+  customerCaseStudies?: string;
 };
 
 type Funding = {
@@ -17,3 +20,10 @@ type fundingHistoryProps = {
   keyInvestors?: string;
   Founders?: string;
 };
+
+export enum CriteriaType {
+  COMPANY_INFO = "companyInfo",
+  FEATURES = "features",
+  CUSTOMER_CASE_STUDIES = "customerCaseStudies",
+  DEFAULT = "",
+}
