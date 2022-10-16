@@ -7,24 +7,24 @@ const progressBarWarning = (value: number) => {
   switch (true) {
     case value <= 3:
       return {
-        textColor: "red",
-        pathColor: "red",
-        trailColor: "#e4ece7",
-        backgroundColor: "#f6000020",
+        textColor: "#A20000",
+        pathColor: "#E00000",
+        trailColor: "#E4E7EC",
+        backgroundColor: "#FFECEC",
       };
     case value > 3 && value <= 6:
       return {
-        textColor: "#f5bf0d",
-        pathColor: "#f5bf0d",
-        trailColor: "#e4ece7",
-        backgroundColor: "#edd00f1f",
+        textColor: "#D16603",
+        pathColor: "rgb(234, 120, 14)",
+        trailColor: "#E4E7EC",
+        backgroundColor: "#FFF2E7",
       };
     default:
       return {
-        textColor: "green",
-        pathColor: "green",
-        trailColor: "#e4ece7",
-        backgroundColor: "#0ad10a1f",
+        textColor: "#006836",
+        pathColor: "#008243",
+        trailColor: "#E4E7EC",
+        backgroundColor: "#EBF5F0",
       };
   }
 };

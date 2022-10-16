@@ -15,14 +15,6 @@ export const TableRoW = styled(muiTableRow)`
   .circle-tick-icon {
     color: green;
   }
-  .table-cell-input {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-    height: 3rem;
-  }
   .submit-button {
     background: transparent;
     border: none;
@@ -34,14 +26,21 @@ export const TableRoW = styled(muiTableRow)`
     cursor: pointer;
   }
   .table-cell {
-    padding: 0.5em 1rem;
-    height: 3rem;
+    padding: 0.25em 1rem;
+    height: 3.5rem;
     min-width: 1rem;
   }
   .inputTextField {
-    width: 90%;
+    width: 85%;
     margin: 0;
     padding: 0.5rem 0.725rem;
-    border: 1px solid #e4e6e7;
+    border: 1px solid rgb(228, 231, 236);
+    color: #667085;
+  }
+  .circled-cancel-icon {
+    color: #e00000;
+    font-size: 1.5rem;
+    padding: 0;
+    cursor: pointer;
   }
 `;

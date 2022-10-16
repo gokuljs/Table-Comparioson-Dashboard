@@ -5,7 +5,14 @@ import {
   DummyDatasetProps,
 } from "../../../Pages/Dashboard/types";
 import CircularProgressBar from "./components/circularProgessBar";
-import { Table, Title } from "./styles";
+import {
+  CompanyCloseIcon,
+  Note,
+  OverAllScrollText,
+  Table,
+  TableElementText,
+  Title,
+} from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import { Text } from "./styles";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
@@ -50,18 +57,20 @@ function TableCard({
     });
     setDummyDataSet([...tempArray]);
   };
-
+  console.log(data.id !== "0" && dummyDataSet.length >= 5, "ssss");
   return (
     <Table aria-label="simple table">
       <TableBody>
         <TableRow>
           <TableCell className="table-cell-header" align="center">
             <Grid item lg={12}>
-              <Grid
+              <CompanyCloseIcon
                 item
                 display="flex"
                 justifyContent="flex-end"
                 align-item="center"
+                className="close-icon-container"
+                required={data.id === "0" && dummyDataSet.length >= 5}
               >
                 {data.id !== "0" && (
                   <CloseIcon
@@ -69,19 +78,21 @@ function TableCard({
                     onClick={() => deleteCompanyCard(data)}
                   />
                 )}
-              </Grid>
+              </CompanyCloseIcon>
+
               <Grid
                 item
                 display="flex"
                 flexDirection="column"
                 alignItems="center"
+                className="company-logo-container"
               >
                 {data?.id === "0" && dummyDataSet.length >= 5 ? (
-                  <Text>
+                  <Note>
                     Note:To add more Vendors to compare you need to remove to
                     first remove one or more vendors.At a time maximum of fou
                     vendors are allowed to compare.
-                  </Text>
+                  </Note>
                 ) : (
                   <>
                     <img
@@ -118,7 +129,7 @@ function TableCard({
               {data?.overallScore ? (
                 <CircularProgressBar value={data?.overallScore} />
               ) : (
-                <>Overall Score</>
+                <OverAllScrollText>Overall Score</OverAllScrollText>
               )}
             </Grid>
           </TableCell>
@@ -127,7 +138,11 @@ function TableCard({
           <TableRow>
             <TableCell className="table-cell" align="left">
               <Text>
-                <Grid>{data?.productDescription}</Grid>
+                <Grid>
+                  <TableElementText>
+                    {data?.productDescription}
+                  </TableElementText>
+                </Grid>
                 <Grid>
                   {" "}
                   {data.id === "0" && (
@@ -135,7 +150,7 @@ function TableCard({
                       onClick={() =>
                         deleteData(DummyDataDeleteProps.PRODUCT_DESCRIPTION)
                       }
-                      className="close-icon-red"
+                      className="circled-cancel-icon"
                     />
                   )}
                 </Grid>
@@ -154,7 +169,10 @@ function TableCard({
             >
               <Text>
                 <Grid display="flex" alignItems="center">
-                  {data?.fundingHistory?.funding}
+                  <TableElementText>
+                    {data?.fundingHistory?.funding}
+                  </TableElementText>
+
                   {data.id === "0" && (
                     <>
                       {showDetailedFundingHistory ? (
@@ -171,7 +189,7 @@ function TableCard({
                       onClick={() =>
                         deleteData(DummyDataDeleteProps.FUNDING_HISTORY)
                       }
-                      className="close-icon-red"
+                      className="circled-cancel-icon"
                     />
                   )}
                 </Grid>
@@ -188,7 +206,10 @@ function TableCard({
                   className="table-cell funding-history-table-cell"
                   align="left"
                 >
-                  <Text> {data?.fundingHistory?.history?.founded}</Text>
+                  <TableElementText>
+                    {" "}
+                    {data?.fundingHistory?.history?.founded}
+                  </TableElementText>
                 </TableCell>
               </TableRow>
               <TableRow className="funding-history-table-row">
@@ -196,7 +217,9 @@ function TableCard({
                   className="table-cell funding-history-table-cell"
                   align="left"
                 >
-                  <Text>{data?.fundingHistory?.history?.keyInvestors}</Text>
+                  <TableElementText>
+                    {data?.fundingHistory?.history?.keyInvestors}
+                  </TableElementText>
                 </TableCell>
               </TableRow>
               <TableRow className="funding-history-table-row">
@@ -204,7 +227,9 @@ function TableCard({
                   className="table-cell funding-history-table-cell"
                   align="left"
                 >
-                  <Text>{data?.fundingHistory?.history?.founders}</Text>
+                  <TableElementText>
+                    {data?.fundingHistory?.history?.founders}
+                  </TableElementText>
                 </TableCell>
               </TableRow>
             </>

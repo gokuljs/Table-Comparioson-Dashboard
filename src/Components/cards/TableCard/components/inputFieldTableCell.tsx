@@ -1,6 +1,6 @@
 import { Grid, TableCell } from "@mui/material";
 import React, { useEffect } from "react";
-import { Text } from "../styles";
+import { TableElementText, Text } from "../styles";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { DummyDataDeleteProps } from "../types";
 import {
@@ -164,20 +164,22 @@ function InputFieldTableCell({
       {!validatingInputFieldExistOrNot() ? (
         <TableCell className="table-cell" align="left">
           <Text>
-            <Grid>{value}</Grid>
+            <Grid>
+              <TableElementText>{value}</TableElementText>
+            </Grid>
             <Grid>
               {" "}
               {id === "0" && (
                 <CancelRoundedIcon
                   onClick={() => deleteData(deleteAttribute)}
-                  className="close-icon-red"
+                  className="circled-cancel-icon"
                 />
               )}
             </Grid>
           </Text>
         </TableCell>
       ) : (
-        <TableCell className="table-cell table-cell-input" align="left">
+        <TableCell className="table-cell" align="left">
           <form
             className="table-cell-input"
             onSubmit={handleSubmit((value) => onSubmit(value, data))}

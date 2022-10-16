@@ -7,6 +7,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import uuid from "react-uuid";
 import { DummyDatasetProps } from "../../Pages/Dashboard/types";
 import { defaultDummyData, DEFAULT_IMAGE_STRING } from "./utils";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 type inputArrayProps = {
   title: string;
@@ -58,24 +59,24 @@ function DialogModal({
   const inputArray: inputArrayProps[] = [
     {
       title: "image",
-      msg: "please enter image url",
+      msg: "Please enter image url",
       default: DEFAULT_IMAGE_STRING,
       optionalText:
-        "There is a default image URL,but if you want to replace it with another image, please do so",
+        "There is a default image URL,but if you want to replace it with another image, Please do so",
     },
-    { title: "title", msg: "please enter your company info" },
-    { title: "productDescription", msg: "please enter productDescription" },
-    { title: "funding", msg: "please enter total funding raised" },
-    { title: "founded", msg: "please enter when it was founded" },
-    { title: "keyInvestors", msg: "please enter the keyInvestors" },
-    { title: "founders", msg: "please enter the founders" },
+    { title: "title", msg: "Please enter your company info" },
+    { title: "productDescription", msg: "Please enter product description" },
+    { title: "funding", msg: "Please enter total funding raised" },
+    { title: "founded", msg: "Please enter when it was founded" },
+    { title: "keyInvestors", msg: "Please enter the keyInvestors" },
+    { title: "founders", msg: "Please enter the founders" },
   ];
 
   return (
     <CustomDialogModal open={open} maxWidth="md" fullWidth>
       <Grid container className="wrapper" lg={12}>
         <Grid container lg={12} display="flex" justifyContent="flex-end">
-          <CloseIcon onClick={() => handleClose()} />
+          <CloseIcon className="close-icon" onClick={() => handleClose()} />
         </Grid>
         <Grid
           container
@@ -99,7 +100,10 @@ function DialogModal({
                     })}
                   />
                   {value?.optionalText && (
-                    <p className="optionalText">{value?.optionalText}</p>
+                    <p className="optionalText">
+                      <InfoOutlinedIcon className="infoIcon" />{" "}
+                      {value?.optionalText}
+                    </p>
                   )}
                   <ErrorMessage
                     errors={errors}

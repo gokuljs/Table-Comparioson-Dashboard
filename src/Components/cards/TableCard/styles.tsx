@@ -7,19 +7,22 @@ export const TableCard = styled(Grid)`
 `;
 
 export const Table = styled(muiTable)`
-  border: 1px solid rgba(224, 224, 224, 1);
+  border: 1px solid #e4e7ec;
   min-width: 3rem;
 
   .table-cell-header {
-    height: 6.8rem;
+    height: 7rem;
     padding: 0.25rem 0.5rem;
   }
   .table-cell-progress-bar {
     height: 4rem;
     margin: 0;
   }
+  .company-logo-container {
+    min-height: 4rem;
+  }
   .table-cell {
-    padding: 0.5em 1rem;
+    padding: 0.25em 1rem;
     height: 2.5rem;
     min-width: 1rem;
   }
@@ -35,21 +38,25 @@ export const Table = styled(muiTable)`
     display: flex;
     justify-content: flex-start;
   }
+
   .closeIcon {
-    color: #999d9f;
+    color: #e4e7ec;
     font-size: 1.5rem;
+    transition: 0.1s all ease-out;
     :hover {
+      color: red;
       cursor: pointer;
     }
   }
-  .close-icon-red {
-    color: red;
-    font-size: 1rem;
+  .circled-cancel-icon {
+    color: #e00000;
+    font-size: 1.5rem;
+    padding: 0;
     cursor: pointer;
   }
   .funding-history-table-row:nth-child(odd) {
     .funding-history-table-cell {
-      background: #c5dfe1;
+      background: #ecf2fc;
     }
   }
   .inputTextField {
@@ -80,11 +87,12 @@ export const Table = styled(muiTable)`
 
 export const Title = styled(Grid)(
   ({ isVendor = false }: { isVendor: boolean }) => ({
-    fontSize: "0.725rem",
-    marginTop: "0.5rem",
+    fontSize: "0.8rem",
+    marginTop: "0.725rem",
     textTransform: "capitalize",
+    transition: "0.1s all ease-out",
     cursor: isVendor ? "pointer" : "default",
-    color: isVendor ? "blue" : "black",
+    color: isVendor ? "rgb(11, 92, 215)" : "black",
     fontFamily: "Inter,sans-serif",
   })
 );
@@ -98,3 +106,34 @@ export const Text = styled(Grid)`
   align-items: center;
   font-family: sans-serif;
 `;
+
+export const Note = styled("p")`
+  font-size: 0.7rem;
+  color: rgb(11, 92, 215);
+  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
+`;
+
+export const TableElementText = styled("p")`
+  font-size: 0.825rem;
+  padding: 0;
+  color: "#101828";
+  text-transform: capitalize;
+  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
+`;
+export const OverAllScrollText = styled("p")`
+  font-size: 1rem;
+  padding: 0;
+  color: "#101828";
+  text-transform: capitalize;
+  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
+`;
+
+export const CompanyCloseIcon = styled(Grid)(
+  ({ required }: { required: boolean }) => ({
+    minHeight: "1.5rem",
+    display: required ? "none" : "flex",
+  })
+);
