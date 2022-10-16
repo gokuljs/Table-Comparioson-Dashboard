@@ -30,7 +30,7 @@ function InputFieldTableCell({
   setChooseCriteria: any;
   deleteAttribute: DummyDataDeleteProps;
 }) {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   useEffect(() => {
     const tempArray = [...dummyDataSet];
     switch (true) {
@@ -143,6 +143,7 @@ function InputFieldTableCell({
       };
       setDummyDataSet([...tempArray]);
     }
+    reset();
   };
 
   const placeHolderText = () => {
