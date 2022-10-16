@@ -26,6 +26,7 @@ export const Table = styled(muiTable)`
     width: 3rem;
     margin: 0;
     padding: 0;
+    object-fit: contain;
   }
 
   .progress-bar {

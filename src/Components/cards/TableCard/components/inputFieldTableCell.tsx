@@ -21,7 +21,7 @@ function InputFieldTableCell({
   data,
   deleteAttribute,
 }: {
-  id: number;
+  id: string;
   value: any;
   dummyDataSet: DummyDatasetProps[];
   data: DummyDatasetProps;
@@ -62,7 +62,7 @@ function InputFieldTableCell({
         !dummyDataSet.every((value) => value?.companyInfo) &&
         chooseCriteria !== CriteriaType.COMPANY_INFO:
         tempArray.forEach((value, index) => {
-          if (value?.id !== 0 && !value?.companyInfo) {
+          if (value?.id !== "0" && !value?.companyInfo) {
             tempArray[index] = { ...value, companyInfo: " " };
           }
         });
@@ -72,7 +72,7 @@ function InputFieldTableCell({
         !dummyDataSet.every((value) => value?.features) &&
         chooseCriteria !== CriteriaType.FEATURES:
         tempArray.forEach((value, index) => {
-          if (value?.id !== 0 && !value?.features) {
+          if (value?.id !== "0" && !value?.features) {
             tempArray[index] = { ...value, features: " " };
           }
         });
@@ -82,7 +82,7 @@ function InputFieldTableCell({
         !dummyDataSet.every((value) => value?.customerCaseStudies) &&
         chooseCriteria !== CriteriaType.CUSTOMER_CASE_STUDIES:
         tempArray.forEach((value, index) => {
-          if (value?.id !== 0 && !value?.customerCaseStudies) {
+          if (value?.id !== "0" && !value?.customerCaseStudies) {
             tempArray[index] = { ...value, customerCaseStudies: " " };
           }
         });
@@ -167,7 +167,7 @@ function InputFieldTableCell({
             <Grid>{value}</Grid>
             <Grid>
               {" "}
-              {id === 0 && (
+              {id === "0" && (
                 <CancelRoundedIcon
                   onClick={() => deleteData(deleteAttribute)}
                   className="close-icon-red"

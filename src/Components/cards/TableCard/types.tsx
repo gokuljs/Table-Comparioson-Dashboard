@@ -21,4 +21,5 @@ export type TableCardProps = {
   chooseCriteria: string;
   setChooseCriteria: Dispatch<CriteriaType>;
   index: number;
+  setNewVendor: Dispatch<boolean>;
 };

@@ -1,5 +1,5 @@
 export type DummyDatasetProps = {
-  id: number;
+  id: string;
   image: string;
   title: string;
   overallScore?: number;
@@ -18,7 +18,7 @@ type Funding = {
 type fundingHistoryProps = {
   founded?: string;
   keyInvestors?: string;
-  Founders?: string;
+  founders?: string;
 };
 
 export enum CriteriaType {

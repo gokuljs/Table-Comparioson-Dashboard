@@ -7,6 +7,7 @@ import { dummyDataset as dummyData } from "./utils";
 import ArrowDropUpTwoToneIcon from "@mui/icons-material/ArrowDropUpTwoTone";
 import ArrowDropDownTwoToneIcon from "@mui/icons-material/ArrowDropDownTwoTone";
 import useOutsideClick from "../../hooks/clickAway/useClickAway";
+import DialogModal from "../../Components/Modal";
 
 function Dashboard() {
   const ref = useRef(null);
@@ -18,7 +19,7 @@ function Dashboard() {
   const [chooseCriteria, setChooseCriteria] = useState<CriteriaType>(
     CriteriaType.DEFAULT
   );
-
+  const [addNewVendor, setNewVendor] = useState<boolean>(false);
   useOutsideClick(ref, () => {
     setShowCriteria(false);
   });
@@ -77,9 +78,18 @@ function Dashboard() {
               chooseCriteria={chooseCriteria}
               setChooseCriteria={setChooseCriteria}
               index={index}
+              setNewVendor={setNewVendor}
             />
           ))}
       </Grid>
+      <DialogModal
+        open={addNewVendor}
+        handleClose={() => {
+          setNewVendor(false);
+        }}
+        dummyDataSet={dummyDataSet}
+        setDummyDataSet={setDummyDataSet}
+      />
     </DashboardWrapper>
   );
 }
