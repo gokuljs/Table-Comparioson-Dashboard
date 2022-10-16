@@ -67,7 +67,7 @@ function Dashboard() {
       </div>
       <Grid display="flex" flexWrap="nowrap">
         {Array.isArray(dummyDataSet) &&
-          dummyDataSet.map((value) => (
+          dummyDataSet.map((value, index) => (
             <TableCard
               data={value}
               dummyDataSet={dummyDataSet}
@@ -76,6 +76,7 @@ function Dashboard() {
               showDetailedFundingHistory={showDetailedFundingHistory}
               chooseCriteria={chooseCriteria}
               setChooseCriteria={setChooseCriteria}
+              index={index}
             />
           ))}
       </Grid>

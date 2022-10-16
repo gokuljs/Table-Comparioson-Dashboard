@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, TableRow as muiTableRow } from "@mui/material";
 import { styled } from "@mui/system";
 
 export const ProgressBarContainer = styled(Grid)`
@@ -9,4 +9,36 @@ export const ProgressBarContainer = styled(Grid)`
   align-items: center;
   padding: 0;
   margin: 0;
+`;
+
+export const TableRoW = styled(muiTableRow)`
+  .circle-tick-icon {
+    color: green;
+  }
+  .table-cell-input {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .submit-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .table-cell {
+    padding: 0.5em 1rem;
+    height: 2.5rem;
+    min-width: 1rem;
+  }
+  .inputTextField {
+    width: 90%;
+    padding: 0.5rem 0.725rem;
+    border: 1px solid #e4e6e7;
+  }
 `;

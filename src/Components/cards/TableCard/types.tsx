@@ -20,4 +20,5 @@ export type TableCardProps = {
   showDetailedFundingHistory: boolean;
   chooseCriteria: string;
   setChooseCriteria: Dispatch<CriteriaType>;
+  index: number;
 };

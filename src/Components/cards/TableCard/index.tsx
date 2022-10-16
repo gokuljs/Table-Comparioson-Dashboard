@@ -12,8 +12,7 @@ import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { DummyDataDeleteProps, TableCardProps } from "./types";
 import ArrowDropUpTwoToneIcon from "@mui/icons-material/ArrowDropUpTwoTone";
 import ArrowDropDownTwoToneIcon from "@mui/icons-material/ArrowDropDownTwoTone";
-import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
-import { useForm } from "react-hook-form";
+import InputFieldTableCell from "./components/inputFieldTableCell";
 
 function TableCard({
   data,
@@ -23,8 +22,8 @@ function TableCard({
   showDetailedFundingHistory,
   chooseCriteria,
   setChooseCriteria,
+  index,
 }: TableCardProps) {
-  const { register, handleSubmit } = useForm();
   const [addingDummyData, setAddingDummyData] = useState<DummyDatasetProps>({
     id: 1,
     image:
@@ -41,30 +40,6 @@ function TableCard({
       },
     },
   });
-
-  useEffect(() => {
-    const tempArray = [...dummyDataSet];
-    switch (true) {
-      case chooseCriteria === CriteriaType.COMPANY_INFO:
-        tempArray[0] = { ...tempArray[0], [chooseCriteria]: "Company Info" };
-        setDummyDataSet([...tempArray]);
-        break;
-      case chooseCriteria === CriteriaType.FEATURES:
-        tempArray[0] = { ...tempArray[0], [chooseCriteria]: "Features" };
-        setDummyDataSet([...tempArray]);
-        break;
-      case chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES:
-        tempArray[0] = {
-          ...tempArray[0],
-          [chooseCriteria]: "Customer Case Studies",
-        };
-        setDummyDataSet([...tempArray]);
-        break;
-      default:
-        break;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chooseCriteria]);
 
   const deleteCompanyCard = (data: DummyDatasetProps) => {
     dummyDataSet.splice(
@@ -89,24 +64,6 @@ function TableCard({
       ) {
         delete value?.fundingHistory;
         delete addingDummyData?.fundingHistory;
-      } else if (
-        deleteAttribute === DummyDataDeleteProps?.COMPANY_INFO &&
-        value?.companyInfo
-      ) {
-        delete value?.companyInfo;
-        setChooseCriteria(CriteriaType.DEFAULT);
-      } else if (
-        deleteAttribute === DummyDataDeleteProps?.FEATURES &&
-        value?.features
-      ) {
-        delete value?.features;
-        setChooseCriteria(CriteriaType.DEFAULT);
-      } else if (
-        deleteAttribute === DummyDataDeleteProps?.CUSTOMER_CASE_STUDIES &&
-        value?.customerCaseStudies
-      ) {
-        delete value?.customerCaseStudies;
-        setChooseCriteria(CriteriaType.DEFAULT);
       }
     });
     setAddingDummyData({ ...addingDummyData });
@@ -133,34 +90,6 @@ function TableCard({
         [chooseCriteria]: value[chooseCriteria],
       };
       setDummyDataSet([...tempArray]);
-    }
-  };
-
-  const validatingInputFieldExistOrNot = () => {
-    switch (true) {
-      case chooseCriteria === CriteriaType.COMPANY_INFO && !data?.companyInfo:
-        return true;
-      case chooseCriteria === CriteriaType.FEATURES && !data?.features:
-        return true;
-      case chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES &&
-        !data?.customerCaseStudies:
-        return true;
-      default:
-        return false;
-    }
-  };
-
-  const placeHolderText = () => {
-    switch (true) {
-      case chooseCriteria === CriteriaType.COMPANY_INFO && !data?.companyInfo:
-        return "Company Info";
-      case chooseCriteria === CriteriaType.FEATURES && !data?.features:
-        return "Features";
-      case chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES &&
-        !data?.customerCaseStudies:
-        return "Customer Case Studies";
-      default:
-        return "";
     }
   };
 
@@ -322,86 +251,42 @@ function TableCard({
               </TableRow>
             </>
           )}
-        {data?.companyInfo && (
-          <TableRow>
-            <TableCell className="table-cell" align="left">
-              <Text>
-                <Grid>{data?.companyInfo}</Grid>
-                <Grid>
-                  {" "}
-                  {data.id === 0 && (
-                    <CancelRoundedIcon
-                      onClick={() =>
-                        deleteData(DummyDataDeleteProps.COMPANY_INFO)
-                      }
-                      className="close-icon-red"
-                    />
-                  )}
-                </Grid>
-              </Text>
-            </TableCell>
-          </TableRow>
+        {(data.companyInfo || chooseCriteria === CriteriaType.COMPANY_INFO) && (
+          <InputFieldTableCell
+            data={data}
+            id={data?.id}
+            value={data.companyInfo}
+            dummyDataSet={dummyDataSet}
+            setDummyDataSet={setDummyDataSet}
+            chooseCriteria={chooseCriteria}
+            setChooseCriteria={setChooseCriteria}
+            deleteAttribute={DummyDataDeleteProps.COMPANY_INFO}
+          />
         )}
-        {data?.features && (
-          <TableRow>
-            <TableCell className="table-cell" align="left">
-              <Text>
-                <Grid>{data?.features}</Grid>
-                <Grid>
-                  {" "}
-                  {data.id === 0 && (
-                    <CancelRoundedIcon
-                      onClick={() => deleteData(DummyDataDeleteProps.FEATURES)}
-                      className="close-icon-red"
-                    />
-                  )}
-                </Grid>
-              </Text>
-            </TableCell>
-          </TableRow>
+        {(data.features || chooseCriteria === CriteriaType.FEATURES) && (
+          <InputFieldTableCell
+            data={data}
+            id={data?.id}
+            value={data.features}
+            dummyDataSet={dummyDataSet}
+            setDummyDataSet={setDummyDataSet}
+            chooseCriteria={chooseCriteria}
+            setChooseCriteria={setChooseCriteria}
+            deleteAttribute={DummyDataDeleteProps.FEATURES}
+          />
         )}
-        {data?.customerCaseStudies && (
-          <TableRow>
-            <TableCell className="table-cell" align="left">
-              <Text>
-                <Grid>{data?.customerCaseStudies}</Grid>
-                <Grid>
-                  {" "}
-                  {data.id === 0 && (
-                    <CancelRoundedIcon
-                      onClick={() =>
-                        deleteData(DummyDataDeleteProps.CUSTOMER_CASE_STUDIES)
-                      }
-                      className="close-icon-red"
-                    />
-                  )}
-                </Grid>
-              </Text>
-            </TableCell>
-          </TableRow>
-        )}
-        {validatingInputFieldExistOrNot() && data?.id !== 0 && (
-          <TableRow className="funding-history-table-row">
-            <TableCell className="table-cell table-cell-input" align="left">
-              <form
-                className="table-cell-input"
-                onSubmit={handleSubmit((value) => onSubmit(value, data))}
-              >
-                <input
-                  type="text"
-                  placeholder={`Please enter ${placeHolderText()}`}
-                  {...register(chooseCriteria, { required: true })}
-                  className="inputTextField"
-                />
-                <button type="submit" className="submit-button">
-                  <CheckCircleRoundedIcon
-                    type="submit"
-                    className="circle-tick-icon"
-                  />
-                </button>
-              </form>
-            </TableCell>
-          </TableRow>
+        {(data.customerCaseStudies ||
+          chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES) && (
+          <InputFieldTableCell
+            data={data}
+            id={data?.id}
+            value={data.customerCaseStudies}
+            dummyDataSet={dummyDataSet}
+            setDummyDataSet={setDummyDataSet}
+            chooseCriteria={chooseCriteria}
+            setChooseCriteria={setChooseCriteria}
+            deleteAttribute={DummyDataDeleteProps.CUSTOMER_CASE_STUDIES}
+          />
         )}
       </TableBody>
     </Table>
