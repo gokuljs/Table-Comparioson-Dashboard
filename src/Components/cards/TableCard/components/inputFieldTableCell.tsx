@@ -88,9 +88,24 @@ function InputFieldTableCell({
         });
         setDummyDataSet([...tempArray]);
         break;
+      case !dummyDataSet[0]?.productDescription &&
+        dummyDataSet.some((value) => value?.productDescription):
+        tempArray.forEach((value) => {
+          delete value?.productDescription;
+        });
+        setDummyDataSet([...tempArray]);
+        break;
+      case !dummyDataSet[0]?.features &&
+        dummyDataSet.some((value) => value?.features):
+        tempArray.forEach((value) => {
+          delete value?.features;
+        });
+        setDummyDataSet([...tempArray]);
+        break;
       default:
         break;
     }
+    console.log({ dummyDataSet }, "ssss");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chooseCriteria, dummyDataSet]);
 

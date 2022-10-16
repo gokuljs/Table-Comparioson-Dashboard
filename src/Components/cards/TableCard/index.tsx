@@ -57,7 +57,6 @@ function TableCard({
     });
     setDummyDataSet([...tempArray]);
   };
-  console.log(data.id !== "0" && dummyDataSet.length >= 5, "ssss");
   return (
     <Table aria-label="simple table">
       <TableBody>
