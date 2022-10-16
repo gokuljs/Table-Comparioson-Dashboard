@@ -96,4 +96,5 @@ export const Text = styled(Grid)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: sans-serif;
 `;

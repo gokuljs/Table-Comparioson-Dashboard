@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import React, { Dispatch } from "react";
+import React, { Dispatch, useState } from "react";
 import { CustomDialogModal } from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import { useForm } from "react-hook-form";
@@ -26,13 +26,14 @@ function DialogModal({
   dummyDataSet: DummyDatasetProps[];
   setDummyDataSet: Dispatch<DummyDatasetProps[]>;
 }) {
+  const [useDefaultData, setUseDefaultData] = useState(defaultDummyData);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
-
   const onSubmit = (data: any) => {
     const formData: DummyDatasetProps = {
       id: uuid(),
@@ -114,7 +115,8 @@ function DialogModal({
                 className="submit-button"
                 type="button"
                 onClick={() => {
-                  setDummyDataSet([...dummyDataSet, defaultDummyData]);
+                  setDummyDataSet([...dummyDataSet, useDefaultData]);
+                  setUseDefaultData({ ...useDefaultData, id: uuid() });
                   reset();
                   handleClose();
                 }}

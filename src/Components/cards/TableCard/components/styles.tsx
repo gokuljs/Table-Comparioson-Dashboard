@@ -20,6 +20,8 @@ export const TableRoW = styled(muiTableRow)`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0;
+    height: 3rem;
   }
   .submit-button {
     background: transparent;
@@ -33,11 +35,12 @@ export const TableRoW = styled(muiTableRow)`
   }
   .table-cell {
     padding: 0.5em 1rem;
-    height: 2.5rem;
+    height: 3rem;
     min-width: 1rem;
   }
   .inputTextField {
     width: 90%;
+    margin: 0;
     padding: 0.5rem 0.725rem;
     border: 1px solid #e4e6e7;
   }
