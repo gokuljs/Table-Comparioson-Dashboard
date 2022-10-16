@@ -112,6 +112,7 @@ function DialogModal({
             <Grid lg={12} display="flex" justifyContent="space-evenly">
               <button
                 className="submit-button"
+                type="button"
                 onClick={() => {
                   setDummyDataSet([...dummyDataSet, defaultDummyData]);
                   reset();

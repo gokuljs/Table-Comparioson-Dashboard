@@ -8,6 +8,8 @@ export const TableCard = styled(Grid)`
 
 export const Table = styled(muiTable)`
   border: 1px solid rgba(224, 224, 224, 1);
+  min-width: 3rem;
+
   .table-cell-header {
     height: 6.8rem;
     padding: 0.25rem 0.5rem;

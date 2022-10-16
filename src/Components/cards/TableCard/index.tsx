@@ -51,15 +51,6 @@ function TableCard({
     setDummyDataSet([...tempArray]);
   };
 
-  // const addVendor = (id?: Number) => {
-  //   if (id === '0') {
-  //     dummyDataSet.push(addingDummyData);
-  //     setDummyDataSet([...dummyDataSet]);
-  //   } else {
-  //     return;
-  //   }
-  // };
-
   return (
     <Table aria-label="simple table">
       <TableBody>
