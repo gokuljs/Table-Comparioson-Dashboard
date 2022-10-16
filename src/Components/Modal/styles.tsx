@@ -26,16 +26,17 @@ export const CustomDialogModal = styled(Dialog)`
   }
   .submit-button {
     padding: 0.5rem;
-    background: #1f003b;
-    color: #fff;
-    font-family: Inter, sans-serif;
+    width: 45%;
+    text-transform: uppercase;
     font-weight: 700;
     margin: 1rem 0;
-    border: 1px solid #1f003b;
-    transition: 0.2s all ease-in-out;
+    background: #e2993a;
+    color: #fff;
+    border: 1px solid #e2993a;
+    transition: 0.2s all ease-out;
     :hover {
       background: #fff;
-      color: #1f003b;
+      color: #e2993a;
     }
   }
   .optionalText {
