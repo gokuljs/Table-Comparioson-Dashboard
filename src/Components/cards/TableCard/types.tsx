@@ -18,7 +18,7 @@ export type TableCardProps = {
   setShowDetailedFundingHistory: Dispatch<boolean>;
   setDummyDataSet: Dispatch<DummyDatasetProps[]>;
   showDetailedFundingHistory: boolean;
-  chooseCriteria: string;
+  chooseCriteria: CriteriaType;
   setChooseCriteria: Dispatch<CriteriaType>;
   index: number;
   setNewVendor: Dispatch<boolean>;

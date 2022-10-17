@@ -28,7 +28,6 @@ function DialogModal({
   setDummyDataSet: Dispatch<DummyDatasetProps[]>;
 }) {
   const [useDefaultData, setUseDefaultData] = useState(defaultDummyData);
-
   const {
     register,
     handleSubmit,

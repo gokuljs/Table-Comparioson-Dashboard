@@ -8,9 +8,11 @@ import ArrowDropUpTwoToneIcon from "@mui/icons-material/ArrowDropUpTwoTone";
 import ArrowDropDownTwoToneIcon from "@mui/icons-material/ArrowDropDownTwoTone";
 import useOutsideClick from "../../hooks/clickAway/useClickAway";
 import DialogModal from "../../Components/Modal";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Dashboard() {
   const ref = useRef(null);
+  const matches = useMediaQuery("(max-width:1000px)");
   const [dummyDataSet, setDummyDataSet] =
     useState<DummyDatasetProps[]>(dummyData);
   const [showDetailedFundingHistory, setShowDetailedFundingHistory] =
@@ -26,8 +28,8 @@ function Dashboard() {
 
   return (
     <DashboardWrapper>
-      <div className="add-criteria">
-        <div ref={ref} className="add-criteria-text">
+      <Grid container lg={12} className="add-criteria">
+        <Grid ref={ref} className="add-criteria-text">
           <Grid
             display="flex"
             alignItems="center"
@@ -64,9 +66,14 @@ function Dashboard() {
               Customer Cases Studies
             </Grid>
           </DifferentCriteria>
-        </div>
-      </div>
-      <Grid display="flex" flexWrap="nowrap">
+        </Grid>
+      </Grid>
+      <Grid
+        display="flex"
+        container
+        lg={12}
+        flexWrap={matches ? "wrap" : "nowrap"}
+      >
         {Array.isArray(dummyDataSet) &&
           dummyDataSet.map((value, index) => (
             <TableCard

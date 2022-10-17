@@ -1,14 +1,15 @@
 import { Grid, styled, Table as muiTable } from "@mui/material";
 
 export const TableCard = styled(Grid)`
-  min-width: 3rem;
+  min-width: 5rem;
   width: 100%;
   border: 1px solid black;
 `;
 
 export const Table = styled(muiTable)`
   border: 1px solid #e4e7ec;
-  min-width: 3rem;
+  min-width: 10rem;
+  max-width: 18rem;
 
   .table-cell-header {
     height: 7rem;
@@ -33,7 +34,6 @@ export const Table = styled(muiTable)`
     padding: 0;
     object-fit: contain;
   }
-
   .progress-bar {
     display: flex;
     justify-content: flex-start;

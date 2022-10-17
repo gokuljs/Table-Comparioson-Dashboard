@@ -2,14 +2,13 @@ import { Grid, TableCell } from "@mui/material";
 import React, { useEffect } from "react";
 import { TableElementText, Text } from "../styles";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
-import { DummyDataDeleteProps } from "../types";
-import {
-  CriteriaType,
-  DummyDatasetProps,
-} from "../../../../Pages/Dashboard/types";
+
+import { CriteriaType } from "../../../../Pages/Dashboard/types";
 import { useForm } from "react-hook-form";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import { TableRoW } from "./styles";
+import { DummyDataDeleteProps } from "../types";
+import { InputFieldTableProps } from "./types";
 
 function InputFieldTableCell({
   id,
@@ -20,16 +19,7 @@ function InputFieldTableCell({
   setChooseCriteria,
   data,
   deleteAttribute,
-}: {
-  id: string;
-  value: any;
-  dummyDataSet: DummyDatasetProps[];
-  data: DummyDatasetProps;
-  setDummyDataSet: any;
-  chooseCriteria: any;
-  setChooseCriteria: any;
-  deleteAttribute: DummyDataDeleteProps;
-}) {
+}: InputFieldTableProps) {
   const { register, handleSubmit, reset } = useForm();
   useEffect(() => {
     const tempArray = [...dummyDataSet];
@@ -163,11 +153,12 @@ function InputFieldTableCell({
 
   const placeHolderText = () => {
     switch (true) {
-      case chooseCriteria === CriteriaType.COMPANY_INFO && !value:
+      case chooseCriteria === CriteriaType.COMPANY_INFO && !data?.companyInfo:
         return "Company Info";
-      case chooseCriteria === CriteriaType.FEATURES && !value:
+      case chooseCriteria === CriteriaType.FEATURES && !data?.features:
         return "Features";
-      case chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES && !value:
+      case chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES &&
+        !data?.customerCaseStudies:
         return "Customer Case Studies";
       default:
         return "";

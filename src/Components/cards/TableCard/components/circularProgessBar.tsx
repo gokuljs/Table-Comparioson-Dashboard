@@ -2,6 +2,7 @@ import React from "react";
 import { ProgressBarContainer } from "./styles";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { CircularProgressBarProps } from "./types";
 
 const progressBarWarning = (value: number) => {
   switch (true) {
@@ -28,7 +29,7 @@ const progressBarWarning = (value: number) => {
       };
   }
 };
-function CircularProgressBar({ value }: { value?: number }) {
+function CircularProgressBar({ value }: CircularProgressBarProps) {
   return (
     <ProgressBarContainer>
       {value && (

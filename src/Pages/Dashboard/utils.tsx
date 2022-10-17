@@ -11,7 +11,7 @@ export let dummyDataset: DummyDatasetProps[] = [
     fundingHistory: {
       funding: "funding",
       history: {
-        founded: "founders",
+        founded: "founded",
         keyInvestors: "Key Investors",
         founders: "founders",
       },
