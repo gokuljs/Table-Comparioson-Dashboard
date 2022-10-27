@@ -1,5 +1,6 @@
 import { Dispatch } from "react";
 import {
+  CriteriaStatusTypes,
   CriteriaType,
   DummyDatasetProps,
 } from "../../../Pages/Dashboard/types";
@@ -22,4 +23,5 @@ export type TableCardProps = {
   setChooseCriteria: Dispatch<CriteriaType>;
   index: number;
   setNewVendor: Dispatch<boolean>;
+  criteriaStatus: CriteriaStatusTypes;
 };

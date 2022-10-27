@@ -27,3 +27,9 @@ export enum CriteriaType {
   CUSTOMER_CASE_STUDIES = "customerCaseStudies",
   DEFAULT = "",
 }
+
+export type CriteriaStatusTypes = {
+  companyInfo: boolean;
+  features: boolean;
+  customerCase: boolean;
+};

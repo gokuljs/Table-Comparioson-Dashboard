@@ -31,6 +31,7 @@ function TableCard({
   setChooseCriteria,
   index,
   setNewVendor,
+  criteriaStatus,
 }: TableCardProps) {
   const deleteCompanyCard = (data: DummyDatasetProps) => {
     dummyDataSet.splice(
@@ -233,43 +234,46 @@ function TableCard({
               </TableRow>
             </>
           )}
-        {(data.companyInfo || chooseCriteria === CriteriaType.COMPANY_INFO) && (
-          <InputFieldTableCell
-            data={data}
-            id={data?.id}
-            value={data.companyInfo}
-            dummyDataSet={dummyDataSet}
-            setDummyDataSet={setDummyDataSet}
-            chooseCriteria={chooseCriteria}
-            setChooseCriteria={setChooseCriteria}
-            deleteAttribute={DummyDataDeleteProps.COMPANY_INFO}
-          />
-        )}
-        {(data.features || chooseCriteria === CriteriaType.FEATURES) && (
-          <InputFieldTableCell
-            data={data}
-            id={data?.id}
-            value={data.features}
-            dummyDataSet={dummyDataSet}
-            setDummyDataSet={setDummyDataSet}
-            chooseCriteria={chooseCriteria}
-            setChooseCriteria={setChooseCriteria}
-            deleteAttribute={DummyDataDeleteProps.FEATURES}
-          />
-        )}
+        {(data.companyInfo || chooseCriteria === CriteriaType.COMPANY_INFO) &&
+          criteriaStatus.companyInfo && (
+            <InputFieldTableCell
+              data={data}
+              id={data?.id}
+              value={data.companyInfo}
+              dummyDataSet={dummyDataSet}
+              setDummyDataSet={setDummyDataSet}
+              chooseCriteria={chooseCriteria}
+              setChooseCriteria={setChooseCriteria}
+              deleteAttribute={DummyDataDeleteProps.COMPANY_INFO}
+            />
+          )}
+        {(data.features || chooseCriteria === CriteriaType.FEATURES) &&
+          criteriaStatus.features && (
+            <InputFieldTableCell
+              data={data}
+              id={data?.id}
+              value={data.features}
+              dummyDataSet={dummyDataSet}
+              setDummyDataSet={setDummyDataSet}
+              chooseCriteria={chooseCriteria}
+              setChooseCriteria={setChooseCriteria}
+              deleteAttribute={DummyDataDeleteProps.FEATURES}
+            />
+          )}
         {(data.customerCaseStudies ||
-          chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES) && (
-          <InputFieldTableCell
-            data={data}
-            id={data?.id}
-            value={data.customerCaseStudies}
-            dummyDataSet={dummyDataSet}
-            setDummyDataSet={setDummyDataSet}
-            chooseCriteria={chooseCriteria}
-            setChooseCriteria={setChooseCriteria}
-            deleteAttribute={DummyDataDeleteProps.CUSTOMER_CASE_STUDIES}
-          />
-        )}
+          chooseCriteria === CriteriaType.CUSTOMER_CASE_STUDIES) &&
+          criteriaStatus.customerCase && (
+            <InputFieldTableCell
+              data={data}
+              id={data?.id}
+              value={data.customerCaseStudies}
+              dummyDataSet={dummyDataSet}
+              setDummyDataSet={setDummyDataSet}
+              chooseCriteria={chooseCriteria}
+              setChooseCriteria={setChooseCriteria}
+              deleteAttribute={DummyDataDeleteProps.CUSTOMER_CASE_STUDIES}
+            />
+          )}
       </TableBody>
     </Table>
   );
